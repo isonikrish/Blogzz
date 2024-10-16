@@ -1,3 +1,4 @@
+import { blog_data } from "@/Assets/assets";
 import { connectDB } from "@/lib/config/db";
 import BlogModel from "@/lib/models/BlogModel";
 import { writeFile } from "fs/promises";
@@ -14,8 +15,9 @@ LoadDB();
 
 export async function GET(request) {
   try {
-    console.log("Blog get hit");
-    return NextResponse.json({ msg: "API WORKING" });
+    const blogs = await BlogModel.find({});
+
+    return NextResponse.json({ blogs });
   } catch (error) {
     console.error("Error in GET request:", error);
     return NextResponse.json(
@@ -45,6 +47,6 @@ export async function POST(request) {
     authorImg: `${formData.get("authorImg")}`,
   };
   await BlogModel.create(blogData);
-  
-  return NextResponse.json({ success:true,msg: "Blog Added" });
+
+  return NextResponse.json({ success: true, msg: "Blog Added" });
 }
