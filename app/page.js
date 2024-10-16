@@ -3,6 +3,7 @@
 import BlogList from "@/Components/BlogList";
 import Footer from "@/Components/Footer";
 import Header from "@/Components/Header";
+import { Toaster } from "react-hot-toast";
 
 export default function Home() {
   return (
@@ -10,6 +11,7 @@ export default function Home() {
       <Header />
       <BlogList />
       <Footer />
+      <Toaster />
     </div>
   );
 }
